@@ -1,4 +1,4 @@
-#include <SoftwareSerial.h>
+#include <BluetoothSerial.h>
 #include "Car/Car.h"
 
 #define IN1 3
@@ -12,16 +12,12 @@
 Car car(IN1, IN2, IN3, IN4);
 
 // instância do bluetooth
-SoftwareSerial bt(RX_PIN, TX_PIN);
+BluetoothSerial bt;
 
 void setup() {
-  // configuração dos pinos do bluetooth
-  pinMode(RX_PIN, INPUT);
-  pinMode(TX_PIN, OUTPUT);
-
   // inicialização da comunicação serial
-  Serial.begin(9600);
-  bt.begin(9600);
+  Serial.begin(115200);
+  bt.begin("ESP32dip");
 }
 
 void loop() {

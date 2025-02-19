@@ -1,28 +1,32 @@
 #include "DCMotor.h"
 #include "Arduino.h"
 
+
+#define PWM_FREQUENCY 5000
+#define PWM_RESOLUTION 8
+
 DCMotor::DCMotor(int in1, int in2): spd(255) {
   pin1 = in1;
   pin2 = in2;
 
-  pinMode(pin1, OUTPUT);
-  pinMode(pin2, OUTPUT);
+  ledcAttach(pin1, PWM_FREQUENCY, PWM_RESOLUTION);
+  ledcAttach(pin2, PWM_FREQUENCY, PWM_RESOLUTION);
 
-  digitalWrite(pin1, LOW);
-  digitalWrite(pin2, LOW);
+  ledcWrite(pin1, LOW);
+  ledcWrite(pin2, LOW);
 }
 
 void DCMotor::Forward() {
-  analogWrite(pin1, spd);
-  digitalWrite(pin2, LOW);
+  ledcWrite(pin1, spd);
+  ledcWrite(pin2, LOW);
 }
 
 void DCMotor::Backward() {
-  digitalWrite(pin1, LOW);
-  analogWrite(pin2, spd);
+  ledcWrite(pin1, LOW);
+  ledcWrite(pin2, spd);
 }
 
 void DCMotor::Stop() {
-  digitalWrite(pin1, LOW);
-  digitalWrite(pin2, LOW);
+  ledcWrite(pin1, LOW);
+  ledcWrite(pin2, LOW);
 }

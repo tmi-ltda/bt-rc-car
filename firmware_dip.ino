@@ -1,12 +1,10 @@
 #include <BluetoothSerial.h>
-#include "Car/Car.h"
+#include "Car.h"
 
-#define IN1 3
-#define IN2 5
-#define IN3 6
-#define IN4 9
-#define RX_PIN 2
-#define TX_PIN 3
+#define IN1 32
+#define IN2 33
+#define IN3 25
+#define IN4 26
 
 // instância do carro
 Car car(IN1, IN2, IN3, IN4);
@@ -18,6 +16,8 @@ void setup() {
   // inicialização da comunicação serial
   Serial.begin(115200);
   bt.begin("ESP32dip");
+  Serial.println("Ready");
+  bt.write('T');
 }
 
 void loop() {
@@ -28,19 +28,25 @@ void loop() {
 
     switch(c) {
       case 'F':
-        car.Forward();
+        car.forward();
         break;
       case 'B':
-        car.Backward();
+        car.backward();
         break;
       case 'L':
-        car.Left();
+        car.left();
         break;
       case 'R':
-        car.Right();
+        car.right();
+        break;
+      case 'Q':
+        car.forwardLeft();
+        break;
+      case 'E':
+        car.forwardRight();
         break;
       case 'S':
-        car.Stop();
+        car.stop();
         break;
     }
   }

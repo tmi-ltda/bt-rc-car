@@ -1,4 +1,5 @@
-#include <BluetoothSerial.h>
+#include "Arduino.h"
+#include "BluetoothSerial.h"
 #include "Car.h"
 
 #define IN1 32
@@ -7,7 +8,7 @@
 #define IN4 26
 
 // instância do carro
-Car car(IN1, IN2, IN3, IN4);
+Car car(IN1, IN2, IN3, IN4, 0, 1, 2, 3);
 
 // instância do bluetooth
 BluetoothSerial bt;
@@ -16,12 +17,11 @@ void setup() {
   // inicialização da comunicação serial
   Serial.begin(115200);
   bt.begin("ESP32dip");
-  Serial.println("Ready");
-  bt.write('T');
 }
 
 void loop() {
-  // leitura do bluetooth
+  // leitura do bluetoothr
+
   if (bt.available() > 0) {
     char c = bt.read();
     Serial.println(c);
@@ -39,10 +39,10 @@ void loop() {
       case 'R':
         car.right();
         break;
-      case 'Q':
+      case 'E':
         car.forwardLeft();
         break;
-      case 'E':
+      case 'Q':
         car.forwardRight();
         break;
       case 'S':

@@ -18,14 +18,14 @@ void Car::backward() {
 
 void Car::left() {
   resetSpeed();
-  motorL.forward();
-  motorR.backward();
+  motorL.backward();
+  motorR.forward();
 }
 
 void Car::right() {
   resetSpeed();
-  motorL.backward();
-  motorR.forward(); 
+  motorL.forward();
+  motorR.backward(); 
 }
 
 void Car::forwardLeft() {

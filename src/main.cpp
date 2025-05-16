@@ -8,7 +8,7 @@
 #define IN4 26
 
 // instância do carro
-Car car(IN1, IN2, IN3, IN4, 0, 1, 2, 3);
+Car car(IN1, IN2, IN3, IN4);
 
 // instância do bluetooth
 BluetoothSerial bt;

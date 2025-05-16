@@ -1,8 +1,8 @@
 #include "Car.h"
 #include "Arduino.h"
 
-Car::Car(uint8_t lPin1, uint8_t lPin2, uint8_t rPin1, uint8_t rPin2, uint8_t lPin1Channel, uint8_t lPin2Channel, uint8_t rPin1Channel, uint8_t rPin2Channel) 
-  : motorL(lPin1, lPin2, lPin1Channel, lPin2Channel), motorR(rPin1, rPin2, rPin1Channel, rPin2Channel) {}
+Car::Car(uint8_t lPin1, uint8_t lPin2, uint8_t rPin1, uint8_t rPin2) 
+  : motorL(lPin1, lPin2), motorR(rPin1, rPin2) {}
 
 void Car::forward() {
   resetSpeed();

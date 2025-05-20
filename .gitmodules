@@ -1,3 +1,0 @@
-[submodule "lib/Car"]
-	path = lib/Car
-	url = https://github.com/tmi-ltda/car.git

@@ -11,6 +11,9 @@
 #define DIGITS 4
 
 char command[COMMAND_SIZE] = {};
+char c = 'S';
+
+uint64_t last_read = 0;
 
 // instância e configuração do carro
 static car_config_t config = {
@@ -33,37 +36,13 @@ void setup() {
 void loop() {
   // leitura do bluetooth
   if (bt.available() > 0) {
-    bt.flush(); // waits for
+    bt.flush();
     size_t len = bt.readBytesUntil('\n', command, COMMAND_SIZE - 1);
     command[len] = '\0';
 
     if (len == 1 && isAlpha(command[0])) {
-      char c = command[0];
+      c = command[0];
       Serial.printf("Command: %c\n", c);
-
-      switch(c) {
-        case FORWARD:
-          car.forward();
-          break;
-        case BACKWARD:
-          car.backward();
-          break;
-        case LEFT:
-          car.left();
-          break;
-        case RIGHT:
-          car.right();
-          break;
-        // case 'E':
-        //   car.forwardLeft();
-        //   break;
-        // case 'Q':
-        //   car.forwardRight();
-          break;
-        case STOP:
-          car.stop();
-          break;
-      }
     } else if (len > 1 & isDigit(command[1])) {
       int number = min(100, atoi(command + 1));
       float power = number / 100.0f;
@@ -71,5 +50,29 @@ void loop() {
 
       car.setMaxPower(power);
     }
+  }
+
+  switch(c) {
+      case FORWARD:
+        car.forward();
+        break;
+      case BACKWARD:
+        car.backward();
+        break;
+      case LEFT:
+        car.left();
+        break;
+      case RIGHT:
+        car.right();
+        break;
+      // case 'E':
+      //   car.forwardLeft();
+      //   break;
+      // case 'Q':
+      //   car.forwardRight();
+        break;
+      case STOP:
+        car.stop();
+        break;
   }
 }

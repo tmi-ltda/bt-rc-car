@@ -5,5 +5,7 @@ enum Commands {
   BACKWARD = 'B',
   LEFT = 'L',
   RIGHT = 'R',
-  STOP = 'S'
+  STOP = 'S',
+  A_LEFT = 'X',
+  A_RIGHT = 'Y',
 };

@@ -13,6 +13,9 @@
 char command[COMMAND_SIZE] = {};
 char c = 'S';
 
+bool repeat_x = true;
+bool repeat_y = true;
+
 uint64_t last_read = 0;
 
 // instância e configuração do carro
@@ -42,6 +45,9 @@ void loop() {
 
     if (len == 1 && isAlpha(command[0])) {
       c = command[0];
+
+      if (c == A_LEFT) repeat_x = !repeat_x;
+      if (c == A_RIGHT) repeat_y = !repeat_y;
       Serial.printf("Command: %c\n", c);
     } else if (len > 1 & isDigit(command[1])) {
       int number = min(100, atoi(command + 1));
@@ -60,16 +66,18 @@ void loop() {
         car.backward();
         break;
       case LEFT:
-        car.left();
+        car.differentialLeft();
         break;
       case RIGHT:
-        car.right();
+        car.differentialRight();
         break;
-      // case 'E':
-      //   car.forwardLeft();
-      //   break;
-      // case 'Q':
-      //   car.forwardRight();
+      case A_LEFT:
+        if (!repeat_x) car.axialLeft();
+        else c = STOP;
+        break;
+      case A_RIGHT:
+        if (!repeat_y) car.axialRight();
+        else c = STOP;
         break;
       case STOP:
         car.stop();

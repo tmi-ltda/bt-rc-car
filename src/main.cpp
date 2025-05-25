@@ -2,6 +2,7 @@
 #include <BluetoothSerial.h>
 #include <Car.hpp>
 #include <commands.h>
+#include <OTA.hpp>
 
 #define IN1 32
 #define IN2 33
@@ -34,6 +35,7 @@ void setup() {
   // inicialização da comunicação serial
   Serial.begin(115200);
   bt.begin("ESP32dip");
+  ota_begin();
 }
 
 void loop() {
@@ -83,4 +85,6 @@ void loop() {
         car.stop();
         break;
   }
+
+  ArduinoOTA.handle();
 }

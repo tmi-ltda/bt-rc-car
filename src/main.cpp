@@ -20,7 +20,7 @@ bool repeat_y = true;
 uint64_t last_read = 0;
 
 // instância e configuração do carro
-static car_config_t config = {
+car_config_t config = {
   .left_pin1 = IN1,
   .left_pin2 = IN2,
   .right_pin1 = IN3,

@@ -1,7 +1,6 @@
 #include <Arduino.h>
 #include <BluetoothSerial.h>
 #include <Car.hpp>
-#include <commands.h>
 
 #define IN1 32
 #define IN2 33
@@ -9,6 +8,16 @@
 #define IN4 26
 #define COMMAND_SIZE 6
 #define DIGITS 4
+
+enum Commands {
+  FORWARD = 'F',
+  BACKWARD = 'B',
+  LEFT = 'L',
+  RIGHT = 'R',
+  STOP = 'S',
+  A_LEFT = 'X',
+  A_RIGHT = 'Y',
+};
 
 char command[COMMAND_SIZE] = {};
 char c = 'S';

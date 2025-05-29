@@ -4,6 +4,3 @@
 [submodule "lib/DCMotor"]
 	path = lib/DCMotor
 	url = https://github.com/tmi-ltda/dc-motor.git
-[submodule "lib/OTA"]
-	path = lib/OTA
-	url = https://github.com/tmi-ltda/ota.git

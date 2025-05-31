@@ -88,7 +88,7 @@ void loop() {
         if (!repeat_y) car.axialRight();
         else c = STOP;
         break;
-      case STOP:
+      default:
         car.stop();
         break;
   }

@@ -25,8 +25,6 @@ char c = 'S';
 bool repeat_x = true;
 bool repeat_y = true;
 
-uint64_t last_read = 0;
-
 // instância e configuração do carro
 car_config_t config = {
   .left_pin1 = IN1,
